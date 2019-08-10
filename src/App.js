@@ -1,22 +1,5 @@
 import React, {Component}  from 'react'
-import styled from 'styled-components'
 import Conditional from './components/Conditional'
-
-
-
-
-const FlexGrid = styled.div ` 
-
-display: flex;
-
-h1{
-  font-size: 50px;
-  margin-left: 2%;
-}
-
-
-`;
-
 
 
 class App extends Component {
@@ -25,17 +8,15 @@ class App extends Component {
     super()
 
     this.state = {
-      isloading: false
+      isLoading: true
     }
 
   }
   
   componentDidMount(){
-    setTimeout(() => {
-      this.setState({ 
-        isloading: false
-      })
-    })
+    fetch("https://api.spoonacular.com/recipes/random?number=1")
+    .then(Response => console.log(Response))
+    
 
   }
 
@@ -44,12 +25,20 @@ class App extends Component {
 
 
     return (
-      <FlexGrid>
-        <h1>Hello World</h1>
-
-        <Conditional isloading={this.state.isLoading} />
+      <div>
+       
+        {this.state.isLoading ? 
         
-      </FlexGrid>
+        <h1>Loading..</h1> :
+        
+        <h1>Hello World</h1>
+        
+         
+         }
+
+        
+        
+      </div>
     )
   }
 }
