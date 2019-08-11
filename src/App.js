@@ -1,9 +1,12 @@
 import React, {Component}  from 'react'
+import axios from 'axios'
 import Conditional from './components/Conditional'
 
 
 
-const apiKey = process.env.REACT_APP_SPOONFULL_API_KEY;
+const apiKey = process.env.REACT_APP_FOOD2FORK_API_KEY;
+
+
 
 class App extends Component {
 
@@ -20,12 +23,16 @@ class App extends Component {
 
   
   componentDidMount(){
-    fetch("https://api.spoonacular.com/recipes/random?number=10", {
-       headers: {
-         "Api-Key": {apiKey},
+   /*  axios.get("https://api.spoonacular.com/recipes/random?number=1", {
+      method: "GET",
+      headers: {
+         key: {apiKey},
        }
-    })
-    .then(Response => console.log(Response))
+    }) */
+  /*   axios.get("https://www.food2fork.com/api/search?key=befad3e27d98c5cef9a3d88aacf8ddc3&q=chicken%20breast&page=2")
+    .then(res => {
+      console.log(res)
+    }) */
     
 
   }
