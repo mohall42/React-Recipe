@@ -1,10 +1,26 @@
 import React, {Component}  from 'react'
+import styled from 'styled-components'
+import background from './images/Background.svg'
+import Bite from './images/Bite.svg'
 import axios from 'axios'
 import Conditional from './components/Conditional'
 
 
 
 const apiKey = process.env.REACT_APP_FOOD2FORK_API_KEY;
+
+const Main = styled.div`
+
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url(${background}) no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  
+
+
+`;
 
 
 
@@ -42,7 +58,8 @@ class App extends Component {
 
 
     return (
-      <div>
+      <Main>
+        
        
         {this.state.isLoading ? 
         
@@ -55,7 +72,7 @@ class App extends Component {
 
         
         
-      </div>
+      </Main>
     )
   }
 }
