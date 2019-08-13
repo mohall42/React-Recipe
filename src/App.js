@@ -7,20 +7,8 @@ import Conditional from './components/Conditional'
 
 
 
-const apiKey = process.env.REACT_APP_FOOD2FORK_API_KEY;
-
-const Main = styled.div`
-
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  background: url(${background}) no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  
 
 
-`;
 
 
 
@@ -30,45 +18,64 @@ class App extends Component {
       super()
 
       this.state = {
-        isLoading: true,
-        recipe: {},
-        recipes: []
+        choices: []
       }
+
+      this.handleChange = this.handleChange.bind(this)
 
     }
 
   
-  componentDidMount(){
-   /*  axios.get("https://api.spoonacular.com/recipes/random?number=1", {
-      method: "GET",
-      headers: {
-         key: {apiKey},
-       }
-    }) */
-  /*   axios.get("https://www.food2fork.com/api/search?key=befad3e27d98c5cef9a3d88aacf8ddc3&q=chicken%20breast&page=2")
-    .then(res => {
-      console.log(res)
-    }) */
-    
+    handleChange(event) {
+      const {name} = event.target
 
-  }
+      this.setState( prevState => ({
+        choices: [...prevState.choices, name]
+
+        
+      }))
+      
+    
+    }
+
+
+
 
   render(){
 
+      
+      const Main = styled.div`
 
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url(${background}) no-repeat;
+      background-size: cover;
+      overflow: hidden;
+
+      `;
+
+      
 
     return (
       <Main>
         
        
-        {this.state.isLoading ? 
+        {/* {this.state.isLoading ? 
         
         <h1>Loading..</h1> :
         
         <h1>Hello World</h1>
         
          
-         }
+         } */}
+
+         <label> 
+          <input 
+          type="checkbox" name="chicken"
+          onChange={this.handleChange} />
+          Chicken
+         </label>
 
         
         
