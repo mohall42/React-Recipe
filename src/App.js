@@ -25,56 +25,26 @@ class App extends Component {
       }
 
       this.handleChange = this.handleChange.bind(this)
+      this.handleIngredient = this.handleIngredient.bind(this)
      
 
     }
 
-    handleIngredient(name){
+    handleIngredient= (name)=>{
       this.setState( prevState => ({
         choices: [...prevState.choices, name]
       }))
+
+      console.log(this.state.choices)
     }
 
 
-    handleChange(event){
-      const {name} = event.target
-
-      if(event.target.checked == false){
-
-        
-        this.setState( prevState => ({
-          choices: [...prevState.choices, name]
-        })
-        )
-
-        event.target.checked = true 
-        console.log(this.state.choices)
-      }
-      else{
-
-        this.setState(prevState => ({
-
-          choices: prevState.choices.filter(item => 
-            {
-              return (
-                <Ingredient name={item}   />
-              )
-            })
-        }))
-
-      }
-     
-      
     
-    }
-
-
-
-
   render(){
 
       
       const Main = styled.div`
+
 
         margin: 0;
         height: 100vh;
@@ -92,28 +62,22 @@ class App extends Component {
         
          <Box>
 
-         {/*  {this.state.ingredients.map( value => {
+          {this.state.ingredients.map( value => {
             return(
 
-            <label key={value}> 
-                <input 
-                type="checkbox"
-                name={value}
-                onChange= {this.handleChange }/>
-                {value}
-            </label>
+              <Ingredient key={value} name={value} addIngredient={this.handleIngredient}/>
             )
-          })} */}
+          })} 
 
 
           
-          <label> 
+          {/* <label> 
                 <input 
                 type="checkbox"
                 name="Chicken"
                 onChange= {this.handleChange }/>
                 Chicken
-            </label>
+            </label> */}
 
          </Box>
 

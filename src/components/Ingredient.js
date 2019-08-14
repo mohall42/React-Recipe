@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 
 
 export default class Ingredient extends Component {
+    
+
     constructor(props) {
+        const{name} = props;
+
         super(props)
     
         this.state = {
-             name : this.props.name,
+             name : name,
              checked : false,
              img : this.props.image
         }
@@ -15,11 +19,35 @@ export default class Ingredient extends Component {
     }
 
     handleChange(event){
-        this.setState(prevState => {
-            this.state.checked = !prevState.checked
-        })
-        this.props.addIngredient(event.target.name)
-    }
+        const {name} = event.target
+  
+        if(event.target.checked == false){
+  
+          
+          this.setState( prevState => ({
+            choices: [...prevState.choices, name]
+          })
+          )
+  
+          event.target.checked = true 
+          console.log(this.state.choices)
+        }
+        else{
+  
+          this.setState(prevState => ({
+  
+            choices: prevState.choices.filter(item => 
+              {
+                return (
+                  <Ingredient name={item}   />
+                )
+              })
+          }))
+  
+        }
+       
+      }
+    
     render() {
         return (
             
@@ -27,8 +55,10 @@ export default class Ingredient extends Component {
                 <input 
                 type="checkbox"
                 name={this.state.name}
+                checked={this.state.checked}
                 onChange= {this.handleChange}
-                Chicken/>
+                />
+                {this.state.name}
             </label>
                
                 
