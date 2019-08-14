@@ -20,24 +20,26 @@ class App extends Component {
       super()
 
       this.state = {
-        ingredients: ["chicken", "cheese", "beef", "eggs", "bacon"],
-        choices: []
-      }
+        ingredients: ''
+      };
 
-      this.handleChange = this.handleChange.bind(this)
-      this.handleIngredient = this.handleIngredient.bind(this)
-     
+    
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
 
     }
 
-    handleIngredient= (name)=>{
-      this.setState( prevState => ({
-        choices: [...prevState.choices, name]
-      }))
-
-      console.log(this.state.choices)
+    handleSubmit(event){
+      alert("Entered Ingredients " + this.state.ingredients)
+      event.preventDefault();
+      
     }
 
+    handleChange(event){
+      this.setState({
+        ingredients: event.target.value
+      })
+    }
 
     
   render(){
@@ -62,13 +64,29 @@ class App extends Component {
         
          <Box>
 
-          {this.state.ingredients.map( value => {
+          <form onSubmit = {this.handleSubmit}>
+            <h1>Please enter ingredients</h1>
+            <input type="text"
+              placeholder="Ingredients"
+              name="Ingredient"
+              value={this.state.ingredients}
+              
+
+              />
+
+              <button type= "submit" onClick={this.handleChange}> Enter</button>
+        
+          </form>
+
+
+
+         {/*  {this.state.ingredients.map( value => {
             return(
 
               <Ingredient key={value} name={value} addIngredient={this.handleIngredient}/>
             )
           })} 
-
+ */}
 
           
           {/* <label> 

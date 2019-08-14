@@ -21,7 +21,7 @@ export default class Ingredient extends Component {
     handleChange(event){
         const {name} = event.target
   
-        if(event.target.checked == false){
+        if(event.target.checked === false){
   
           
           this.setState( prevState => ({
