@@ -14,6 +14,18 @@ const Box = styled.div`
 
 `;
 
+const Main = styled.div`
+
+
+margin: 0;
+height: 100vh;
+width: 100vw;
+background: url(${background}) no-repeat;
+background-size: cover;
+overflow: hidden;
+
+`;
+
 class App extends Component {
 
     constructor(){
@@ -45,17 +57,7 @@ class App extends Component {
   render(){
 
       
-      const Main = styled.div`
-
-
-        margin: 0;
-        height: 100vh;
-        width: 100vw;
-        background: url(${background}) no-repeat;
-        background-size: cover;
-        overflow: hidden;
-
-      `;
+    
 
       
 
@@ -70,32 +72,14 @@ class App extends Component {
               placeholder="Ingredients"
               name="Ingredient"
               value={this.state.ingredients}
-              
+              onChange={this.handleChange}
 
               />
 
-              <button type= "submit" onClick={this.handleChange}> Enter</button>
+              <input type= "submit"   value="Submit" />
         
           </form>
 
-
-
-         {/*  {this.state.ingredients.map( value => {
-            return(
-
-              <Ingredient key={value} name={value} addIngredient={this.handleIngredient}/>
-            )
-          })} 
- */}
-
-          
-          {/* <label> 
-                <input 
-                type="checkbox"
-                name="Chicken"
-                onChange= {this.handleChange }/>
-                Chicken
-            </label> */}
 
          </Box>
 
