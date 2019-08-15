@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
 import background from './images/Background.svg'
@@ -18,27 +18,44 @@ const Box = styled.div`
 
 const Main = styled.div`
 
-
-margin: 0;
-height: 100vh;
-width: 100vw;
-background: url(${background}) no-repeat;
-background-size: cover;
-overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url(${background}) no-repeat;
+  background-size: cover;
+  overflow: hidden;
 
 `;
 
-function App() {
-  return(
+class App extends Component {
 
-    <Router>
-      <Main>
-        <LandingPage />
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       formSubmitted: false
+    }
+  }
+  
+  render(){
 
-      </Main>
 
-    </Router>
-  )
+
+    return(
+  
+      <Router>
+        <Main>
+          ({!this.state.formSubmitted}) ?  <LandingPage /> : <PickPage />;
+  
+          <LandingPage />
+  
+        </Main>
+  
+      </Router>
+    )
+
+  }
+
 
     
 }
