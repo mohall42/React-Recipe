@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
 import background from './images/Background.svg'
 import LandingPage from './components/LandingPage'
@@ -27,6 +26,17 @@ const Main = styled.div`
 
 `;
 
+function FormCheck(props){
+
+  const {submitted, updateFormState} = props.formSubmitted;
+
+  if(!submitted){
+    return <LandingPage updateFormState = {updateFormState} />
+  }
+
+  return <PickPage />
+}
+
 class App extends Component {
 
   constructor(props) {
@@ -35,23 +45,29 @@ class App extends Component {
     this.state = {
        formSubmitted: false
     }
+
+    this.updateFormState = this.updateFormState.bind(this);
   }
+
+  updateFormState(){
+
+    this.setState({
+      formSubmitted: true
+    })
+  }
+  
   
   render(){
 
-
-
     return(
+      <div>
+
+       
+      <FormCheck formSubmitted={this.state.formSubmitted} updateFormState={this.updateFormState} />
+
+      </div>
+        
   
-      <Router>
-        <Main>
-          ({!this.state.formSubmitted}) ?  <LandingPage /> : <PickPage />;
-  
-          <LandingPage />
-  
-        </Main>
-  
-      </Router>
     )
 
   }

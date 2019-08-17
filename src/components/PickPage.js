@@ -50,7 +50,7 @@ export default class Picker extends Component {
 
     return (
       <div>
-        
+        <h1>Pick Page</h1>
       </div>
     )
   }

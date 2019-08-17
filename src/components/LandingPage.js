@@ -1,8 +1,6 @@
 import React, {Component}  from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
-import PickPage from './PickPage'
 
 const Box = styled.div`
   
@@ -42,16 +40,17 @@ class LandingPage extends Component {
 
     }
 
-    handleSubmit(event){
+    handleSubmit = (event)=>{
       
+      event.preventDefault();
       this.setState({
         submitArray: this.state.ingredients.split(' ')
       })
 
       alert(this.state.submitArray)
 
-  
-      event.preventDefault();
+      this.props.updateFormState();
+    
       
     }
 
@@ -61,13 +60,9 @@ class LandingPage extends Component {
       })
     }
 
+  
     
   render(){
-
-      
-    
-
-      
 
     return (
       <Main>
