@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import background from './images/Background.svg'
 import LandingPage from './components/LandingPage'
-import Ingredient from './components/Ingredient'
 import PickPage from './components/PickPage'
 
 const Box = styled.div`
@@ -26,16 +25,7 @@ const Main = styled.div`
 
 `;
 
-function FormCheck(props){
 
-  const {submitted, updateFormState} = props.formSubmitted;
-
-  if(!submitted){
-    return <LandingPage updateFormState = {updateFormState} />
-  }
-
-  return <PickPage />
-}
 
 class App extends Component {
 
@@ -43,37 +33,47 @@ class App extends Component {
     super(props)
   
     this.state = {
-       formSubmitted: false
+       formSubmitted: false,
+       submitArray:[]
     }
-
-    this.updateFormState = this.updateFormState.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+   
   }
+  
+   
 
-  updateFormState(){
+  handleSubmit = (value) =>{
+      
+    /* event.preventDefault(); */
 
     this.setState({
+      submitArray: value.split(' '),
       formSubmitted: true
     })
+
+    alert(this.state.submitArray)
+         
   }
-  
-  
+ 
   render(){
+    
+    if(!this.state.formSubmitted){
+      return(
+        <LandingPage handleSubmit = {this.handleSubmit} />
+      )
+    }
+    else{
 
-    return(
-      <div>
-
-       
-      <FormCheck formSubmitted={this.state.formSubmitted} updateFormState={this.updateFormState} />
-
-      </div>
-        
+      return(
+      
+          <PickPage />
+    
+      )
+    }
   
-    )
 
   }
 
-
-    
 }
 
 export default App;

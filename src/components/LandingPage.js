@@ -1,4 +1,4 @@
-import React, {Component}  from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 
@@ -24,46 +24,27 @@ overflow: hidden;
 
 `;
 
-class LandingPage extends Component {
+class LandingPage extends Component{
 
-    constructor(){
-      super()
-
-      this.state = {
-        ingredients: '',
-        submitArray:[]
-      };
-
-    
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-
-    }
-
-    handleSubmit = (event)=>{
-      
-      event.preventDefault();
-      this.setState({
-        submitArray: this.state.ingredients.split(' ')
-      })
-
-      alert(this.state.submitArray)
-
-      this.props.updateFormState();
-    
-      
-    }
-
-    handleChange(event){
-      this.setState({
-        ingredients: event.target.value
-      })
-    }
-
+  constructor(props) {
+    super(props)
   
-    
-  render(){
+    this.state = {
+       ingredients: ''
+    }
 
+    this.handleChange = this.handleChange.bind(this)
+  }
+  
+
+handleChange(event){
+  this.setState({
+    ingredients: event.target.value
+  })
+}
+
+
+render(){
     return (
       <Main>
         
@@ -79,7 +60,7 @@ class LandingPage extends Component {
 
               />
 
-              <button type= "Submit" onClick={this.handleSubmit} >Submit</button>
+              <button onClick={() => this.props.handleSubmit(this.state.ingredients)} >Submit</button>
         
           </form>
 
@@ -90,7 +71,7 @@ class LandingPage extends Component {
         
       </Main>
     )
+  
   }
 }
-
 export default LandingPage;
