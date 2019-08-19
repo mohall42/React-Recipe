@@ -1,29 +1,8 @@
 import React, {Component} from 'react'
-import styled from 'styled-components'
-import background from './images/Background.svg'
 import LandingPage from './components/LandingPage'
 import PickPage from './components/PickPage'
 
-const Box = styled.div`
-  
-  display: flex;
-  height: 500px;
-  width: 1000px;
-  margin: 10% auto;
-  background: white;
 
-`;
-
-const Main = styled.div`
-
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  background: url(${background}) no-repeat;
-  background-size: cover;
-  overflow: hidden;
-
-`;
 
 
 
@@ -51,7 +30,7 @@ class App extends Component {
       formSubmitted: true
     })
 
-    alert(this.state.submitArray)
+   
          
   }
  
@@ -66,7 +45,7 @@ class App extends Component {
 
       return(
       
-          <PickPage />
+          <PickPage Ingredients={this.state.submitArray} />
     
       )
     }
