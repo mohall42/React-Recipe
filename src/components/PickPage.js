@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 import background from '../images/Background.svg'
 
 const Box = styled.div`
@@ -29,8 +28,8 @@ const apiKey = `${process.env.REACT_APP_FOOD2FORK_API_KEY}`;
 const oldUrl = `https://www.food2fork.com/api/search`;   
 
 export default class Picker extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
   
         this.state = {
             recipe: {},
@@ -41,12 +40,17 @@ export default class Picker extends Component {
       }
 
     
-      componentDidMount() {
+      /* componentDidMount() {
+
+       const Ingredients = this.props.Ingredients;
+
         this.setState({isLoading: true})
         let url = new URL(oldUrl),
-        params ={ key: `${apiKey}`, q:`${this.props.ingredients}`};
+        params ={ key: `${apiKey}`, q:`${Ingredients}`};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     
+        console.log("URL", url);
+
         fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -58,7 +62,7 @@ export default class Picker extends Component {
           console.log("recipes", data)}
           
           )
-      }
+      } */
    
   
     render() {
@@ -81,19 +85,18 @@ export default class Picker extends Component {
   
     }; */
 
-    const Content = this.state.isLoading ? "Loading" : this.state.recieps
+    const content = this.state.isLoading ? "Loading" : this.state.recieps
 
     return (
       <Main>
         <Box>
 
          
-          {/* <h1>Pick Page</h1>
-          <p>{` ${Ingredients} ${url}`}</p>
+          <h1>Pick Page</h1>
+           {/*<p>{` ${Ingredients} ${url}`}</p>
           {console.log("url", {url})}  */}
 
-          <Content />
-          
+          {content}
 
         </Box>
       </Main>
