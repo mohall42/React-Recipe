@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
+import Swipeable from 'react-swipy'
+import Button from './Button'
+import Card from './Card'
 
 const Box = styled.div`
   
@@ -56,50 +59,73 @@ export default class Picker extends Component {
         .then(data => {
           
           this.setState({
-            recieps: data
+            recieps: data.recipes
           })
 
-          console.log("recipes", data)}
+          console.log("recipes", data.recipes)}
           
           )
       }
+
+      remove = () => this.setState(({recieps}) => ({
+
+        recieps : recieps.slice(1, recieps.length),
+      }));
    
   
     render() {
  
-  
-     
-/* 
-    componentDidMount(){
-     /*  axios.get("https://api.spoonacular.com/recipes/random?number=1", {
-        method: "GET",
-        headers: {
-           key: {apiKey},
-         }
-      }) */
-    /*   axios.get("https://www.food2fork.com/api/search?key=befad3e27d98c5cef9a3d88aacf8ddc3&q=chicken%20breast&page=2")
-      .then(res => {
-        console.log(res)
-      }) 
-      
-  
-    }; */
+    /* const content = this.state.isLoading ? "Loading" : this.state.recieps */
 
-    const content = this.state.isLoading ? "Loading" : this.state.recieps
+    const { recipes} = this.state;
+    
+    
+    if(this.state.isLoading){
 
-    return (
-      <Main>
+      return(
+
+        <Main>
         <Box>
 
          
-          <h1>Pick Page</h1>
-           {/*<p>{` ${Ingredients} ${url}`}</p>
-          {console.log("url", {url})}  */}
-
-          {content}
+        <p>Loading...</p>
 
         </Box>
       </Main>
-    )
+
+
+
+      )
+    }
+    else{
+
+      return (
+        <Main>
+          <Box>
+  
+           {recipes.length > 0 ? (
+
+              <Swipeable buttons={({left, right}) => (
+                  <div>
+                    <Button onClick={left}>Reject</Button>
+                    <Button onClick={right}>Accept</Button>
+                  </div>
+                )}
+                onAfterSwipe={this.remove}
+              >
+            
+              </Swipeable>
+
+           ) : (
+
+              <Card> No more cards </Card>
+                
+            )}
+  
+          </Box>
+        </Main>
+      )
+    }
+
   }
 }
