@@ -66,8 +66,6 @@ render(){
 
 
          </Box>
-
-        
         
       </Main>
     )

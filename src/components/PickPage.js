@@ -40,7 +40,7 @@ export default class Picker extends Component {
       }
 
     
-      /* componentDidMount() {
+      componentDidMount() {
 
        const Ingredients = this.props.Ingredients;
 
@@ -62,7 +62,7 @@ export default class Picker extends Component {
           console.log("recipes", data)}
           
           )
-      } */
+      }
    
   
     render() {
