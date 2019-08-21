@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
-import Button from './Button'
-import Card from './Card'
+import Check from '../images/Check.svg'
+import X from '../images/X.svg'
 
 const Box = styled.div`
   
@@ -107,8 +107,8 @@ export default class Picker extends Component {
 
               <Swipeable buttons={({left, right}) => (
                   <div>
-                    <Button onClick={left}>Reject</Button>
-                    <Button onClick={right}>Accept</Button>
+                    <button onClick={left}><image src={Check} /></button>
+                    <button onClick={right}><image src={X} /></button>
                   </div>
                 )}
                 onAfterSwipe={this.remove}
