@@ -1,5 +1,6 @@
 import React, {Component}  from 'react'
 import styled from 'styled-components'
+import {device} from '../components/Device'
 
 
 class Card extends Component {
@@ -79,20 +80,21 @@ render(){
 
 
        
-      const { body, image, title, link} = this.props.fill;
+      const { body, image, title, link} = this.props;
         
       return(
         <CardContainer>
           <ImageContainer>
               {/* image ? <Img fluid={image.childImageSharp.fluid} /> : <div />  */}
-              <Img fluid={image.childImageSharp.fluid} />
+              <img src={image} alt={title} />
           </ImageContainer>
           <BodyContainer>
 
             <h3>{title}</h3>
             
             <p>{body}</p>
-            <a href={link}><img alt={title} src={logo}></img></a>
+            {/* <a href={link}><img alt={title} src={logo}></img></a> */}
+            <a href={link}>link</a>
 
           </BodyContainer>
           
@@ -103,13 +105,6 @@ render(){
 };
 
 
-
-
-
-//PropsTypes
-Card.propTypes = {
-  fill: PropTypes.object.isRequired
-}
 
 
 export default Card;

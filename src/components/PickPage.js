@@ -4,6 +4,7 @@ import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
 import Check from '../images/Check.svg'
 import X from '../images/X.svg'
+import Card from '../components/Card'
 
 const Box = styled.div`
   
@@ -59,7 +60,8 @@ export default class Picker extends Component {
         .then(data => {
           
           this.setState({
-            recieps: data.recipes
+            recieps: data.recipes,
+            isLoading: false
           })
 
           console.log("recipes", data.recipes)}
@@ -99,6 +101,20 @@ export default class Picker extends Component {
     }
     else{
 
+   /*    const fill = {
+
+        title: this.state.recieps[0].title,
+        image: this.state.recieps[0].image_url,
+        body: "figure this out in a sec",
+        link: this.state.recieps[0].f2f_url
+
+      } */
+
+      const noMore = {
+        title: "No more cards"
+
+      }
+
       return (
         <Main>
           <Box>
@@ -115,14 +131,16 @@ export default class Picker extends Component {
                 )}
                 onAfterSwipe={this.remove}
               >
-                
-              <p>{this.state.recieps[0]}</p>
+              
+              
+              {/* <p>{this.state.recieps[0].publisher}</p> */}
+              <Card title={this.state.recieps[0].title} image={this.state.recieps[0].image_url} link={this.state.recieps[0].f2f_url} />
                 
               </Swipeable>
 
            ) : (
 
-             <p>No more cards</p>
+             <Card fill={noMore}/>
             )}
   
           </Box>
