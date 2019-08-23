@@ -77,7 +77,7 @@ export default class Picker extends Component {
  
     /* const content = this.state.isLoading ? "Loading" : this.state.recieps */
 
-    const { recipes} = this.state;
+    /* const {recipes} = this.state; */
     
     
     if(this.state.isLoading){
@@ -103,7 +103,9 @@ export default class Picker extends Component {
         <Main>
           <Box>
   
-           {recipes.length > 0 ? (
+           {this.state.recieps.length > 0 ? (
+
+             
 
               <Swipeable buttons={({left, right}) => (
                   <div>
@@ -113,13 +115,14 @@ export default class Picker extends Component {
                 )}
                 onAfterSwipe={this.remove}
               >
-            
+                
+              <p>{this.state.recieps[0]}</p>
+                
               </Swipeable>
 
            ) : (
 
-              <Card> No more cards </Card>
-                
+             <p>No more cards</p>
             )}
   
           </Box>
