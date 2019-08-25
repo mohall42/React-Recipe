@@ -9,6 +9,22 @@ const Box = styled.div`
   width: 1000px;
   margin: 10% auto;
   background: white;
+  -webkit-border-radius: 5px;
+    border-radius: 5px;
+  justify-content: center;
+
+  input[type=text], button {
+    display: block;
+    height: 30px;
+    width: 400px;
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 30% auto;
+    
+}
+
+ 
 
 `;
 

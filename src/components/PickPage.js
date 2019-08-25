@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
+import Button from './Buttons'
 import Check from '../images/Check.svg'
 import X from '../images/X.svg'
 import Card from '../components/Card'
@@ -9,10 +10,10 @@ import Card from '../components/Card'
 const Box = styled.div`
   
   display: flex;
-  height: 500px;
+  height: 900px;
   width: 1000px;
   margin: 10% auto;
-  background: white;
+
 
 `;
 
@@ -116,34 +117,41 @@ export default class Picker extends Component {
       }
 
       return (
+
         <Main>
           <Box>
-  
+
+
+
+
            {this.state.recieps.length > 0 ? (
 
              
 
-              <Swipeable buttons={({left, right}) => (
+              <Swipeable buttons={({right, left}) => (
                   <div>
-                    <button onClick={left}><image src={Check} /></button>
-                    <button onClick={right}><image src={X} /></button>
+                    <Button onClick={left} image={X}/>
+                    <Button onClick={right} image={Check} />
                   </div>
                 )}
                 onAfterSwipe={this.remove}
               >
               
               
-              {/* <p>{this.state.recieps[0].publisher}</p> */}
+              
               <Card title={this.state.recieps[0].title} image={this.state.recieps[0].image_url} link={this.state.recieps[0].f2f_url} />
                 
               </Swipeable>
+                
+              
 
            ) : (
 
              <Card fill={noMore}/>
             )}
-  
           </Box>
+       
+  
         </Main>
       )
     }
