@@ -96,26 +96,29 @@ export default class Picker extends Component {
 
         <Main>
            {recipes.length > 0 && (
-             <div className="cardContainer">
-              <Swipeable buttons={({right, left}) => (
-                  <div className="buttonContainer">
+             <div>
+                <Swipeable buttons={({right, left}) => (
+                    <div className="buttonContainer">
 
-                    <Button onClick={left} image={X} > </Button>
-                 
-                    <Button onClick={right} image={Check} > </Button>
+                      <Button onClick={left} image={X} > </Button>
                   
-                  </div>
-                )}
-
-                onAfterSwipe={this.remove}
-              >
-                            
-              <Card className = "cardItem" 
-                    title={recipes[0].title} 
-                    image={recipes[0].image_url} 
-                    link={recipes[0].f2f_url} > 
+                      <Button onClick={right} image={Check} > </Button>
                     
-              </Card>
+                    </div>
+                  )}
+
+                  onAfterSwipe={this.remove}
+                >
+              <div className="cardContainer">
+
+                <Card className="cardItem" 
+                      title={recipes[0].title} 
+                      image={recipes[0].image_url} 
+                      link={recipes[0].f2f_url} > 
+                      
+                </Card>
+
+              </div>              
                 
               </Swipeable>
                 

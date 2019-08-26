@@ -4,12 +4,12 @@ import styled from 'styled-components'
 
 const cardStyled = {
 
-  width: "1100px",
-  height: "700px",
+  width: "800px",
   boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
   borderRadius: "8px",
   background: "white",
-  position: "absolute"
+  
+
  
 
 }
