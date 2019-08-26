@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './PickPage.css'
+import '../components/pick.css'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
@@ -22,7 +22,7 @@ overflow: hidden;
 
 `;
 
-const apiKey = `${process.env.REACT_APP_FOOD2FORK_API_KEY}`;
+const apiKey = `befad3e27d98c5cef9a3d88aacf8ddc3`;
 const oldUrl = `https://www.food2fork.com/api/search`;   
 
 export default class Picker extends Component {
@@ -96,13 +96,17 @@ export default class Picker extends Component {
 
         <Main>
            {recipes.length > 0 && (
-             <div className="main">
+             <div className="cardContainer">
               <Swipeable buttons={({right, left}) => (
-                  <div>
-                    <Button className="left" onClick={left} image={X} > </Button>
-                    <Button className="right" onClick={right} image={Check} > </Button>
+                  <div className="buttonContainer">
+
+                    <Button onClick={left} image={X} > </Button>
+                 
+                    <Button onClick={right} image={Check} > </Button>
+                  
                   </div>
                 )}
+
                 onAfterSwipe={this.remove}
               >
                             
