@@ -1,0 +1,28 @@
+.main{
+    
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center; 
+  
+}
+
+
+.left{
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+.right{
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.cardItem{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    justify-self: center;
+   
+  }

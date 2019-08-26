@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './PickPage.css'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
@@ -7,15 +8,7 @@ import Check from '../images/Check.svg'
 import X from '../images/X.svg'
 import Card from '../components/Card'
 
-const Box = styled.div`
-  
-  display: flex;
-  height: 900px;
-  width: 1000px;
-  margin: 10% auto;
 
-
-`;
 
 const Main = styled.div`
 
@@ -38,7 +31,7 @@ export default class Picker extends Component {
   
         this.state = {
             recipe: {},
-            recieps: [],
+            recipes: [],
             isLoading: false
         }
   
@@ -61,7 +54,7 @@ export default class Picker extends Component {
         .then(data => {
           
           this.setState({
-            recieps: data.recipes,
+            recipes: data.recipes,
             isLoading: false
           })
 
@@ -70,88 +63,73 @@ export default class Picker extends Component {
           )
       }
 
-      remove = () => this.setState(({recieps}) => ({
+      remove = () => this.setState(({recipes}) => ({
 
-        recieps : recieps.slice(1, recieps.length),
+        recipes : recipes.slice(1, recipes.length),
       }));
    
   
     render() {
  
-    /* const content = this.state.isLoading ? "Loading" : this.state.recieps */
+    
 
-    /* const {recipes} = this.state; */
-    
-    
+
     if(this.state.isLoading){
 
       return(
 
         <Main>
-        <Box>
+        
 
          
-        <p>Loading...</p>
+          <p>Loading...</p>
 
-        </Box>
-      </Main>
-
-
-
+        
+        </Main>
       )
     }
     else{
 
-   /*    const fill = {
-
-        title: this.state.recieps[0].title,
-        image: this.state.recieps[0].image_url,
-        body: "figure this out in a sec",
-        link: this.state.recieps[0].f2f_url
-
-      } */
-
-      const noMore = {
-        title: "No more cards"
-
-      }
-
+      
+      const {recipes} = this.state;
       return (
 
         <Main>
-          <Box>
-
-
-
-
-           {this.state.recieps.length > 0 ? (
-
-             
-
+           {recipes.length > 0 && (
+             <div className="main">
               <Swipeable buttons={({right, left}) => (
                   <div>
-                    <Button onClick={left} image={X}/>
-                    <Button onClick={right} image={Check} />
+                    <Button className="left" onClick={left} image={X} > </Button>
+                    <Button className="right" onClick={right} image={Check} > </Button>
                   </div>
                 )}
                 onAfterSwipe={this.remove}
               >
-              
-              
-              
-              <Card title={this.state.recieps[0].title} image={this.state.recieps[0].image_url} link={this.state.recieps[0].f2f_url} />
+                            
+              <Card className = "cardItem" 
+                    title={recipes[0].title} 
+                    image={recipes[0].image_url} 
+                    link={recipes[0].f2f_url} > 
+                    
+              </Card>
                 
               </Swipeable>
                 
-              
+               {recipes.length > 1 && 
+                    <Card className = "cardItem" zIndex={-1} 
+                    title={recipes[1].title} 
+                    image={recipes[1].image_url} 
+                    link={recipes[1].f2f_url} > </Card>  }
 
-           ) : (
+             </div>
 
-             <Card fill={noMore}/>
-            )}
-          </Box>
-       
-  
+           )} 
+           {/*  <Box>
+
+             <Card className="cardItem" zIndex={-2} title={"No more cards"}/>
+            </Box */}>
+            
+          
         </Main>
       )
     }
