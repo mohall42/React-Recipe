@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 import { shallow, mount, render } from 'enzyme';
+import {spy} from 'sinon'
 import App from './App';
 import LandingPage from './components/LandingPage'
 import Pickpage from './components/Pickpage'
 
 describe('Web App renders' , () =>{
 
-  it(' renders App without crashing', () => {
+  it('renders App without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
@@ -22,7 +23,7 @@ describe('Web App renders' , () =>{
   
   });
   
-  it('renders Pickpage without crash', () => {
+  it('renders Pick Page without crash', () => {
     const div = document.createElement('div')
     ReactDOM.render(<Pickpage />, div);
     ReactDOM.unmountComponentAtNode(div);
@@ -31,18 +32,48 @@ describe('Web App renders' , () =>{
 
 });
 
+// Testing Landing Page
 
 
+describe( 'Landing Page has all components and working ', () => {
 
-describe( 'Landing Page has all components', () => {
+  let wrapper;
+  let appWrapper;
 
-  it('has input box and logo', () => {
+  beforeEach(() => {
+    
+    appWrapper = shallow(<App />);
+    wrapper = shallow(<LandingPage />); 
+  
+  
+  });
 
-    const wrapper = shallow(<LandingPage />);
 
-    expect(wrapper.find('form').closest('.title').type()).to.equal('h1');
+  it('has input form and logo', () => {
+
+    expect(wrapper.find('Main').children()).toHaveLength(2);
+
+    expect(wrapper.find('Box').childAt(0).type()).toEqual('form');
+
 
   });
+
+
+  it('button calls handle submit', () => {
+
+    const mockFunction = spy();
+
+    wrapper.setState({ingredient: 'chicken'});
+    wrapper.setProps({handleSubmit: mockFunction});
+
+    expect(wrapper.state('ingredient')).toEqual('chicken')
+    
+    wrapper.find('button').simulate('click');
+    expect(mockFunction.calledOnce).toBeTruthy(); 
+
+    mockFunction.restore;
+
+  })
   
 
 });

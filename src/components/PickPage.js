@@ -58,9 +58,11 @@ export default class Picker extends Component {
             isLoading: false
           })
 
-          console.log("recipes", data.recipes)}
+          /* console.log("recipes", data.recipes) */
+        
+          }
           
-          )
+        )
       }
 
       remove = () => this.setState(({recipes}) => ({
@@ -80,8 +82,6 @@ export default class Picker extends Component {
 
         <Main>
         
-
-         
           <p>Loading...</p>
 
         
@@ -100,9 +100,9 @@ export default class Picker extends Component {
                 <Swipeable buttons={({right, left}) => (
                     <div className="buttonContainer">
 
-                      <Button onClick={left} image={X} > </Button>
+                      <Button onClick={left} image={X}  name={'x'}> </Button>
                   
-                      <Button onClick={right} image={Check} > </Button>
+                      <Button onClick={right} image={Check}  name={'check'}> </Button>
                     
                     </div>
                   )}
@@ -122,15 +122,18 @@ export default class Picker extends Component {
                 
               </Swipeable>
                 
-               {recipes.length > 1 && 
-                    <Card className = "cardItem" zIndex={-1} 
+              {/*  {recipes.length > 1 && 
+                    <Card className = "cardItem" 
+                    zIndex={-1}
+                    
                     title={recipes[1].title} 
                     image={recipes[1].image_url} 
                     link={recipes[1].f2f_url} > </Card>  }
-
+ */}
              </div>
 
            )} 
+           
            {/*  <Box>
 
              <Card className="cardItem" zIndex={-2} title={"No more cards"}/>

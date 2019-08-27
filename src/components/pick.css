@@ -1,19 +1,22 @@
 
 .cardContainer{
     
-  display: block;
-  margin: 5% auto;
+  display: flex;
+  margin: 2% auto;
+  margin-bottom: 7%;
+  justify-content: center;
 
  
 
 }
 
-\\
+
 
 .buttonContainer{
     
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  z-index: 3;
    
   }

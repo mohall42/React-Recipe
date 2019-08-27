@@ -27,6 +27,8 @@ const Box = styled.div`
 
 `;
 
+Box.displayName = 'Box'
+
 const IconBox = styled.div` 
 
   display: flex;
@@ -70,7 +72,7 @@ handleChange(event){
 
 render(){
     return (
-      <Main className = "mainSection">
+      <Main>
         
          <Box>
 
@@ -93,7 +95,7 @@ render(){
 
          <IconBox>
 
-           <img src={Logo} /> 
+           <img src={Logo} alt="logo" /> 
          </IconBox>
         
       </Main>

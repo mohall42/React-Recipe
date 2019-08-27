@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 
+
 const cardStyled = {
 
   width: "800px",
   boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
   borderRadius: "8px",
   background: "white",
-  
-
+ 
  
 
 }
@@ -37,6 +37,9 @@ ${'' /* width: 900px;
   .imageContainer{
     margin-top: 2%;
     margin-left: 2%;
+    height: 300px;
+    width: 300px;
+
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
@@ -64,10 +67,10 @@ ${'' /* width: 900px;
 
 const Card = (props) => {
     
-      const { body, image, title, link, zIndex = 0} = props;
+      const { body, image, title, link, zIndex = 0, position} = props;
         
       return(
-        <div style={{...cardStyled, zIndex}}>
+        <div style={{...cardStyled, zIndex, position}}>
 
 
 

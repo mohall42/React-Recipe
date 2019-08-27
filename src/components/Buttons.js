@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
-
-
-const imageStyed = {
-
-    background: "none"
-
-}
+import React from 'react'
 
 
 
-const Button = ({ image, onClick}) => (
 
-<button onClick={onClick} ><img style={imageStyed} src={image} /></button>
+
+
+const Button = ({ image, onClick, name}) => (
+
+<img src={image} alt={name}  onClick={onClick} style={ {cursor: 'pointer'}}/>
 
 
 ); 
