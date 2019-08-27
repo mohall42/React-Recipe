@@ -47,7 +47,7 @@ export default class Picker extends Component {
         params ={ key: `${apiKey}`, q:`${Ingredients}`};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     
-        console.log("URL", url);
+        /* console.log("URL", url); */
 
         fetch(url)
         .then(response => response.json())

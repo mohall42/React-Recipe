@@ -46,6 +46,8 @@ const Main = styled.div`
 
 `;
 
+Main.displayName = 'Main';
+
 class LandingPage extends Component{
 
   constructor(props) {
@@ -68,12 +70,12 @@ handleChange(event){
 
 render(){
     return (
-      <Main>
+      <Main className = "mainSection">
         
          <Box>
 
           <form >
-            <h1>Please enter ingredients</h1>
+            <h1 className='title' >Please enter ingredients</h1>
             <input type="text"
               placeholder="Ingredients"
               name="Ingredient"
