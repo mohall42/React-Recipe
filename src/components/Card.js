@@ -15,17 +15,8 @@ const cardStyled = {
 }
 
 
-
-
-
 const CardContainer = styled.div `
 
-${'' /* width: 900px;
-  height: 700px;
-  boxShadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  borderRadius: 8px;
-  background: #000000;
-*/}
   
   display: grid;
   grid-template-columns: 2fr 1fr;

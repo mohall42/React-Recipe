@@ -31,9 +31,10 @@ Box.displayName = 'Box'
 
 const IconBox = styled.div` 
 
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2% 2%;
 
 
 `;
@@ -95,7 +96,7 @@ render(){
 
          <IconBox>
 
-           <img src={Logo} alt="logo" /> 
+           <img className="logo" src={Logo} alt="logo" /> 
          </IconBox>
         
       </Main>

@@ -5,6 +5,7 @@ import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
 import Button from './Buttons'
 import Check from '../images/Check.svg'
+import Loading from '../images/LOADING.svg'
 import X from '../images/X.svg'
 import Card from '../components/Card'
 
@@ -32,7 +33,7 @@ export default class Picker extends Component {
         this.state = {
             recipe: {},
             recipes: [],
-            isLoading: false
+            isLoading: true
         }
   
       }
@@ -47,7 +48,7 @@ export default class Picker extends Component {
         params ={ key: `${apiKey}`, q:`${Ingredients}`};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     
-        /* console.log("URL", url); */
+      
 
         fetch(url)
         .then(response => response.json())
@@ -57,8 +58,6 @@ export default class Picker extends Component {
             recipes: data.recipes,
             isLoading: false
           })
-
-          /* console.log("recipes", data.recipes) */
         
           }
           
@@ -82,7 +81,9 @@ export default class Picker extends Component {
 
         <Main>
         
-          <p>Loading...</p>
+        {/*   <p>Loading...</p> */}
+          {/* <Loading className="loadingSvg" /> */}
+          <img className="loadingSvg" src={Loading} alt="Loading svg" />
 
         
         </Main>
