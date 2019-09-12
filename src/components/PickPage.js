@@ -7,7 +7,7 @@ import Button from './Buttons'
 import Check from '../images/Check.svg'
 import Loading from '../images/LOADING.svg'
 import X from '../images/X.svg'
-import Card from '../components/Card'
+import RecipeCard from '../components/Card'
 
 
 
@@ -93,6 +93,14 @@ export default class Picker extends Component {
 
       
       const {recipes} = this.state;
+
+      const fill = ({  
+        title: recipes[0].title,
+        image: recipes[0].image_url,
+        link: recipes[0].f2f_url,
+      
+      })
+
       return (
 
         <Main>
@@ -112,13 +120,8 @@ export default class Picker extends Component {
                 >
               <div className="cardContainer">
 
-                <Card className="cardItem" 
-                      title={recipes[0].title} 
-                      image={recipes[0].image_url} 
-                      link={recipes[0].f2f_url} > 
-                      
-                </Card>
-
+                <RecipeCard className="cardItem" fill={fill} />
+                    
               </div>              
                 
               </Swipeable>

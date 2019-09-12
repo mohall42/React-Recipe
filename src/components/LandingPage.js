@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import background from '../images/Background.svg'
 import Logo from '../images/logo.svg'
@@ -7,11 +7,14 @@ const Box = styled.div`
   
   display: flex;
   height: 500px;
-  width: 1000px;
-  margin: 1% auto;
+  min-width: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: white;
   -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   justify-content: center;
 
   input[type=text], button {
@@ -51,31 +54,31 @@ const Main = styled.div`
 
 Main.displayName = 'Main';
 
-class LandingPage extends Component{
+class LandingPage extends Component {
 
   constructor(props) {
     super(props)
-  
+
     this.state = {
-       ingredients: ''
+      ingredients: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
   }
-  
-
-handleChange(event){
-  this.setState({
-    ingredients: event.target.value
-  })
-}
 
 
-render(){
+  handleChange(event) {
+    this.setState({
+      ingredients: event.target.value
+    })
+  }
+
+
+  render() {
     return (
       <Main>
-        
-         <Box>
+
+        <Box>
 
           <form >
             <h1 className='title' >Please enter ingredients</h1>
@@ -85,23 +88,23 @@ render(){
               value={this.state.ingredients}
               onChange={this.handleChange}
 
-              />
+            />
 
-              <button onClick={() => this.props.handleSubmit(this.state.ingredients)} >Submit</button>
-        
+            <button onClick={() => this.props.handleSubmit(this.state.ingredients)} >Submit</button>
+
           </form>
 
 
-         </Box>
+        </Box>
 
-         <IconBox>
+        <IconBox>
 
-           <img className="logo" src={Logo} alt="logo" /> 
-         </IconBox>
-        
+          <img className="logo" src={Logo} alt="logo" />
+        </IconBox>
+
       </Main>
     )
-  
+
   }
 }
 export default LandingPage;

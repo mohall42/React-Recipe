@@ -1,101 +1,47 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react'
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles'
 
 
-
-const cardStyled = {
-
-  width: "800px",
-  boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
-  borderRadius: "8px",
-  background: "white",
- 
- 
-
+const styles = {
+  card: {
+    maxWidth: '500',
+    borderWidth: '4px',
+    borderStyle: 'solid',
+  }
 }
 
-
-const CardContainer = styled.div `
-
-  
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 2fr 1fr;
-  alignItems: center; 
- 
+class RecipeCard extends Component {
 
 
-  .imageContainer{
-    margin-top: 2%;
-    margin-left: 2%;
-    height: 300px;
-    width: 300px;
 
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    border-radius: 8px;
-    justify-self: center;
-  }
+  render() {
 
-  .bodyContainer{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    font-size: calc(10px + .65vw);
-    
-  }
+    const { body, title, image, link } = this.props.fill;
 
-  .linkContainer{
-    grid-column-start: 2;
-    grid-row-start: 2;
+
+
+    return (
+
+      <Card className={styles.card}>
+        <CardHeader title={title} />
+
+        {/* <CardMedia src={image} title={title} /> */}
+
+        <CardMedia>
+          <img src={image} alt={title} />
+        </CardMedia>
+        <CardContent >
+          <p>{body}</p>
+        </CardContent>
+      </Card>
+
+
+
+    )
   }
 
 
-`;
-
-       
-
-const Card = (props) => {
-    
-      const { body, image, title, link, zIndex = 0, position} = props;
-        
-      return(
-        <div style={{...cardStyled, zIndex, position}}>
 
 
-
-          <CardContainer>
-
-            <div className="imageContainer">
-                <img src={image} alt={title} />
-            </div>
-            <div className="bodyContainer">
-
-              <h3>{title}</h3>
-              
-              <p>{body}</p>
-            </div>
-            <div className="linkContainer">
-
-              {/* <a href={link}><img alt={title} src={logo}></img></a> */}
-              <a href={link}>link</a>
-
-            </div>
-
-            
-          </CardContainer>
-        </div>
-      
-          
-        
-
-      )
-    
-};
-
-
-
-
-export default Card;
-
+} export default withStyles(styles)(RecipeCard);
