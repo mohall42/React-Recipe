@@ -5,17 +5,20 @@ import Logo from '../images/logo.svg'
 
 const Box = styled.div`
   
+  background: white;
   display: flex;
-  height: 500px;
+  justify-content: center;
+  border: 5px solid #000000;
+
+  min-height: 500px;
   min-width: 1000px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  
   -webkit-border-radius: 5px;
   border-radius: 10px;
-  justify-content: center;
 
   input[type=text], button {
     display: block;
@@ -49,6 +52,8 @@ const Main = styled.div`
   background: url(${background}) no-repeat;
   background-size: cover;
   overflow: hidden;
+  font-family: 'Pacifico', cursive;
+  
 
 `;
 
