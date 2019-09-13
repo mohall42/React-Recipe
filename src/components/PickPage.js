@@ -12,14 +12,12 @@ import RecipeCard from '../components/Card'
 
 
 const Main = styled.div`
-
-
-margin: 0;
-height: 100vh;
-width: 100vw;
-background: url(${background}) no-repeat;
-background-size: cover;
-overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url(${background}) no-repeat;
+  background-size: cover;
+  overflow: hidden;
 
 `;
 
@@ -35,7 +33,9 @@ export default class Picker extends Component {
             recipes: [],
             isLoading: true
         }
-  
+        
+        this.remove = this.remove.bind(this);
+        this.add = this.add.bind(this);
       }
 
     
@@ -56,7 +56,8 @@ export default class Picker extends Component {
           
           this.setState({
             recipes: data.recipes,
-            isLoading: false
+            isLoading: false,
+            saved: []
           })
         
           }
@@ -64,10 +65,30 @@ export default class Picker extends Component {
         )
       }
 
-      remove = () => this.setState(({recipes}) => ({
+      /* remove = () => this.setState(({recipes}) => ({
 
         recipes : recipes.slice(1, recipes.length),
-      }));
+      })
+      
+      
+      ); */
+
+      remove = () =>{
+       this.setState(prevState =>({
+        recipes : prevState.recipes.slice(1, prevState.recipes.length),
+       }))
+        
+      }
+
+      add = () =>{
+        this.setState(prevState =>({
+          saved :  [...prevState.saved, prevState.recipes[0]],
+          recipes : prevState.recipes.slice(1, prevState.recipes.length)
+        })) 
+
+        console.log(this.state.saved)
+       
+      }
    
   
     render() {
@@ -109,9 +130,9 @@ export default class Picker extends Component {
                 <Swipeable buttons={({right, left}) => (
                     <div className="buttonContainer">
 
-                      <Button onClick={left} image={X}  name={'x'}> </Button>
+                      <Button onClick={left, this.remove} image={X}  name={'x'}> </Button>
                   
-                      <Button onClick={right} image={Check}  name={'check'}> </Button>
+                      <Button onClick={right, this.add} image={Check}  name={'check'}> </Button>
                     
                     </div>
                   )}
