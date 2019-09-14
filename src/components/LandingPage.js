@@ -86,7 +86,7 @@ class LandingPage extends Component {
         <Box>
 
           <form >
-            <h1 className='title' >Please enter ingredients</h1>
+            <h1 className='title' align="center" >Please enter ingredients</h1>
             <input type="text"
               placeholder="Ingredients"
               name="Ingredient"

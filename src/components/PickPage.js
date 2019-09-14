@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../components/pick.css'
 import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
-import { Badge } from '@material-ui/core'
+import { Badge, Card } from '@material-ui/core'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
 import Button from './Buttons'
@@ -138,7 +138,19 @@ class Picker extends Component {
         image: recipes[0].image_url,
         link: recipes[0].f2f_url,
 
+      });
+      const secondfill = ({
+        title: recipes[1].title,
+        image: recipes[1].image_url,
+        link: recipes[1].f2f_url,
+
       })
+      const lastfill = ({
+        title: "No more cards",
+        image: "None",
+        link: "None",
+
+      });
 
       return (
 
@@ -147,36 +159,41 @@ class Picker extends Component {
             <div>
               <Swipeable buttons={({ right, left }) => (
                 <div className="buttonContainer">
-
-                  <Button onClick={left, this.remove} image={X} name={'x'}> </Button>
-
-                  <Button onClick={right, this.add} image={Check} name={'check'}> </Button>
-
+                  <Button onClick={left} image={X} name={'x'}> </Button>
+                  <Button onClick={right} image={Check} name={'check'}> </Button>
                 </div>
               )}
 
                 onAfterSwipe={this.remove}
               >
                 <div className="cardContainer">
-
                   <RecipeCard className="cardItem" fill={fill} />
-
                 </div>
-
               </Swipeable>
+              <div className="cardContainer">
+                {Card.length > 1 && <RecipeCard fill={secondfill} />}
 
+              </div>
 
             </div>
 
           )}
+          <div className="cardContainer">
+
+            {recipes.length <= 1 && <RecipeCard fill={lastfill} />}
+          </div>
 
           <div className="heartContainer">
-            <Badge badgeContent={this.state.saved.length} >
-
+            {/*   <Badge badgeContent={this.state.saved.length} >
 
               <img src={Heart} alt="heart" />
-            </Badge>
+
+            </Badge> */}
+
+            <img src={Heart} alt="heart" />
+
           </div>
+
 
         </Main>
       )

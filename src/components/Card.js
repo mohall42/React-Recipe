@@ -17,13 +17,13 @@ class RecipeCard extends Component {
 
   render() {
 
-    const { body, title, image, link } = this.props.fill;
+    const { body, image, title, link, zIndex = 0 } = this.props.fill;
 
 
 
     return (
 
-      <Card className={styles.card}>
+      <Card className={{ ...styles.card, zIndex }}>
         <CardHeader title={title} />
 
         {/* <CardMedia src={image} title={title} /> */}
