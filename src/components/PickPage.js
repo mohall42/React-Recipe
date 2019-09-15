@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../components/pick.css'
 import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
-import { Badge, Card } from '@material-ui/core'
+import { Modal, List, ListItem, ListItemText } from '@material-ui/core'
 import background from '../images/Background.svg'
 import Swipeable from 'react-swipy'
 import Button from './Buttons'
@@ -11,6 +11,7 @@ import Loading from '../images/LOADING.svg'
 import X from '../images/X.svg'
 import RecipeCard from '../components/Card'
 import Heart from '../images/Heart.svg'
+import Error from '../images/error.svg'
 
 
 const styles = {
@@ -41,6 +42,13 @@ const Main = styled.div`
 const apiKey = `befad3e27d98c5cef9a3d88aacf8ddc3`;
 const oldUrl = `https://www.food2fork.com/api/search`;
 
+
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />
+}
+
+
+
 class Picker extends Component {
   constructor(props) {
     super(props)
@@ -48,7 +56,8 @@ class Picker extends Component {
     this.state = {
       recipe: {},
       recipes: [],
-      isLoading: true
+      isLoading: true,
+      open: false,
     }
 
     this.remove = this.remove.bind(this);
@@ -65,8 +74,6 @@ class Picker extends Component {
       params = { key: `${apiKey}`, q: `${Ingredients}` };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
-
-
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -82,13 +89,20 @@ class Picker extends Component {
       )
   }
 
-  /* remove = () => this.setState(({recipes}) => ({
+  handleOpen = () => {
 
-    recipes : recipes.slice(1, recipes.length),
-  })
-  
-  
-  ); */
+
+    this.setState({ open: true })
+
+  }
+
+  handleClose = () => {
+
+    this.setState({ open: false })
+
+
+  }
+
 
   remove = () => {
     this.setState(prevState => ({
@@ -133,21 +147,17 @@ class Picker extends Component {
       const { recipes } = this.state;
       const { classes } = this.props;
 
-      const fill = ({
+
+
+
+      const fill = recipes.length > 0 ? ({
         title: recipes[0].title,
         image: recipes[0].image_url,
         link: recipes[0].f2f_url,
 
-      });
-      const secondfill = ({
-        title: recipes[1].title,
-        image: recipes[1].image_url,
-        link: recipes[1].f2f_url,
-        zIndex: -1,
-      })
-      const lastfill = ({
+      }) : ({
         title: "No more cards",
-        image: "None",
+        image: Error,
         link: "None",
         zIndex: -2,
 
@@ -156,33 +166,39 @@ class Picker extends Component {
       return (
 
         <Main>
-          {recipes.length > 0 && (
+          {recipes.length > 0 ? (
             <div>
               <Swipeable buttons={({ right, left }) => (
                 <div className="buttonContainer">
                   <Button onClick={left} image={X} name={'x'}> </Button>
                   <Button onClick={right} image={Check} name={'check'}> </Button>
                 </div>
+
+
+
+
               )}
 
-                onAfterSwipe={this.remove}
+                onSwipe={'left', this.remove}
+                onSwipe={'right', this.add}
+
               >
                 <div className="cardContainer">
                   <RecipeCard className="cardItem" fill={fill} />
                 </div>
               </Swipeable>
-              <div className="cardContainer">
-                {Card.length > 1 && <RecipeCard fill={secondfill} />}
 
-              </div>
 
             </div>
 
-          )}
-          <div className="cardContainer">
+          ) : (
 
-            {recipes.length <= 1 && <RecipeCard fill={lastfill} />}
-          </div>
+              <div className="cardContainer">
+
+                {recipes.length <= 1 && <RecipeCard fill={fill} />}
+              </div>
+            )}
+
 
           <div className="heartContainer">
             {/*   <Badge badgeContent={this.state.saved.length} >
@@ -191,12 +207,41 @@ class Picker extends Component {
 
             </Badge> */}
 
-            <img src={Heart} alt="heart" />
+            <img src={Heart} alt="heart" onClick={this.handleOpen} />
 
           </div>
 
+          <Modal aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.open}
+            onClose={this.handleClose}
+            className={classes.modal}
+          >
 
-        </Main>
+            <div className="modal-list">
+
+
+              <List>
+                {this.state.saved.map((item) => {
+                  let { title, f2f_url } = item;
+
+
+                  return (
+                    <ListItemLink button href={f2f_url}>
+                      <ListItemText primary={title} />
+                    </ListItemLink>
+                  )
+
+                })}
+              </List>
+
+            </div>
+
+
+          </Modal>
+
+
+        </Main >
       )
     }
 

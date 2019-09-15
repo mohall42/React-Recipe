@@ -5,11 +5,11 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
   card: {
-    position: "absolute",
-    maxWidth: '700',
+    position: 'absolute',
+    maxWidth: '500',
     borderWidth: '4px',
     borderStyle: 'solid',
-    border:' 5px solid #000000',
+    border: ' 5px solid #000000',
     borderRadius: '10px',
 
   }
