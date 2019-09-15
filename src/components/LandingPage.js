@@ -8,7 +8,6 @@ const Box = styled.div`
   background: white;
   display: flex;
   justify-content: center;
-  border: 5px solid #000000;
 
   min-height: 500px;
   min-width: 1000px;
@@ -17,6 +16,8 @@ const Box = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   
+  
+  border: 5px solid #000000;
   -webkit-border-radius: 5px;
   border-radius: 10px;
 

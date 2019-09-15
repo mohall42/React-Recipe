@@ -143,12 +143,13 @@ class Picker extends Component {
         title: recipes[1].title,
         image: recipes[1].image_url,
         link: recipes[1].f2f_url,
-
+        zIndex: -1,
       })
       const lastfill = ({
         title: "No more cards",
         image: "None",
         link: "None",
+        zIndex: -2,
 
       });
 
