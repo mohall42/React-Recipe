@@ -227,7 +227,7 @@ class Picker extends Component {
 
 
                   return (
-                    <ListItemLink button href={f2f_url}>
+                    <ListItemLink button href={f2f_url} target="_blank">
                       <ListItemText primary={title} />
                     </ListItemLink>
                   )
